@@ -100,4 +100,20 @@ class Cf_Cms_Admin {
 
 	}
 
+	public function register_menu(){
+		add_menu_page(
+            'Contact Form DB',
+            'Contact Form DB',
+            'manage_options',
+            'contact_form_db',
+            array($this,'render_menu_page'),
+            'dashicons-chart-line',
+        );
+	}
+
+	public static function render_menu_page(){
+        echo '<div class="wrap"><h2>Contact Form Submitted Data</h2>';
+        echo '</div>';
+    }
+
 }
