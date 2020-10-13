@@ -108,7 +108,8 @@ class Cf_Cms_Admin {
             'contact_form_db',
             array($this,'render_menu_page'),
             'dashicons-chart-line',
-        );
+		);
+		
 	}
 
 	public static function render_menu_page(){
