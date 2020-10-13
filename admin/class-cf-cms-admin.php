@@ -112,7 +112,7 @@ class Cf_Cms_Admin {
 		
 	}
 
-	public static function render_menu_page(){
+	public function render_menu_page(){
         echo '<div class="wrap"><h2>Contact Form Submitted Data</h2>';
         echo '</div>';
     }
