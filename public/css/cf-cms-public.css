@@ -2,3 +2,27 @@
  * All of the CSS for your public-facing functionality should be
  * included in this file.
  */
+.form-wrapper {
+    margin-bottom: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.form-wrapper .half-input {
+    width: calc(100% / 2 - 10px);
+}
+
+.form-wrapper .full-input {
+    width: 100%;
+}
+
+.form-wrapper .half-input:last-child {
+    margin-right: 0px;
+}
+
+.form-wrapper .form-field,
+.form-wrapper label {
+    width: 100%;
+    resize: none;
+}

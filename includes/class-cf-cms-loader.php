@@ -42,6 +42,15 @@ class Cf_Cms_Loader {
 	protected $filters;
 
 	/**
+	 * The array of Shortcodes registered with WordPress.
+	 *
+	 * @since    1.0.0
+	 * @access   protected
+	 * @var      array    $shortcodes    The shortcodes registered with WordPress to fire when the plugin loads.
+	 */
+	protected $shortcodes;
+
+	/**
 	 * Initialize the collections used to maintain the actions and filters.
 	 *
 	 * @since    1.0.0
@@ -50,6 +59,7 @@ class Cf_Cms_Loader {
 
 		$this->actions = array();
 		$this->filters = array();
+		$this->shortcodes = array();
 
 	}
 
@@ -82,6 +92,19 @@ class Cf_Cms_Loader {
 	}
 
 	/**
+	 * Add a new Shortcode to the collection to be registered with WordPress.
+	 *
+	 * @since    1.0.0
+	 * @param    string               $hook             The name of the WordPress filter that is being registered.
+	 * @param    object               $component        A reference to the instance of the object on which the filter is defined.
+	 * @param    string               $callback         The name of the function definition on the $component.
+	 */
+	public function add_shortcode( $tag, $component, $callback) {
+		$this->shortcodes = $this->shortcode( $this->shortcodes, $tag, $component, $callback);
+	}
+
+
+	/**
 	 * A utility function that is used to register the actions and hooks into a single
 	 * collection.
 	 *
@@ -109,6 +132,30 @@ class Cf_Cms_Loader {
 
 	}
 
+	
+	/**
+	 * A utility function that is used to register the actions and hooks into a single
+	 * collection.
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 * @param    array                $shortcodes            The collection of hooks that is being registered (that is, actions or filters).
+	 * @param    string               $tag             The name of the WordPress filter that is being registered.
+	 * @param    object               $component        A reference to the instance of the object on which the filter is defined.
+	 * @param    string               $callback         The name of the function definition on the $component.
+	 */
+	private function shortcode( $shortcodes, $tag, $component, $callback) {
+
+		$shortcodes[] = array(
+			'tag'          => $tag,
+			'component'     => $component,
+			'callback'      => $callback,
+		);
+
+		return $shortcodes;
+
+	}
+
 	/**
 	 * Register the filters and actions with WordPress.
 	 *
@@ -122,6 +169,10 @@ class Cf_Cms_Loader {
 
 		foreach ( $this->actions as $hook ) {
 			add_action( $hook['hook'], array( $hook['component'], $hook['callback'] ), $hook['priority'], $hook['accepted_args'] );
+		}
+
+		foreach ( $this->shortcodes as $shortcode ) {
+			add_shortcode( $shortcode['tag'], array( $shortcode['component'], $shortcode['callback'] ));
 		}
 
 	}

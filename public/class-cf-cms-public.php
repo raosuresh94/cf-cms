@@ -100,4 +100,17 @@ class Cf_Cms_Public {
 
 	}
 
+	/**
+	 * Render Contact Form
+	 * @param $attr = Array()
+	 * @param $content = Null
+	 */
+
+	public function render_contact_form( $attr=array(), $content=null )
+	{
+		ob_start();
+			require __DIR__.'/templates/template-form.php';
+		return ob_get_clean();
+	}
+
 }
