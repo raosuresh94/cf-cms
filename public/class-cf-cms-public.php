@@ -102,8 +102,9 @@ class Cf_Cms_Public {
 
 	/**
 	 * Render Contact Form
-	 * @param $attr = Array()
-	 * @param $content = Null
+	 * @param array $attr
+	 * @param string $content
+	 * @return object
 	 */
 
 	public function render_contact_form( $attr=array(), $content=null )

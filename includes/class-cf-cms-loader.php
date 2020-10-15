@@ -95,7 +95,7 @@ class Cf_Cms_Loader {
 	 * Add a new Shortcode to the collection to be registered with WordPress.
 	 *
 	 * @since    1.0.0
-	 * @param    string               $hook             The name of the WordPress filter that is being registered.
+	 * @param    string               $tag             The name of the WordPress tag that is being registered.
 	 * @param    object               $component        A reference to the instance of the object on which the filter is defined.
 	 * @param    string               $callback         The name of the function definition on the $component.
 	 */
