@@ -177,6 +177,9 @@ class Cf_Cms {
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 		$this->loader->add_shortcode( 'CF_CMS_FORM', $plugin_public, 'render_contact_form' );
 
+		$this->loader->add_action('wp_ajax_cms_cf_submit',$plugin_public, 'cms_cf_submit');
+		$this->loader->add_action('wp_ajax_nopriv_cms_cf_submit',$plugin_public, 'cms_cf_submit');
+
 	}
 
 	/**

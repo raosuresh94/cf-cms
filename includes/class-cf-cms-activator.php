@@ -35,8 +35,11 @@ class Cf_Cms_Activator {
         $collate = $wpdb->get_charset_collate();
         $sql = "CREATE TABLE {$table_name}(
             `id` INT(10) NOT NULL AUTO_INCREMENT,
-            `form_id` INT(10) NOT NULL,
-            `form_data` longtext,
+            `user_first_name` varchar(255) NOT NULL,
+            `user_last_name` varchar(255) NOT NULL,
+            `user_phone` varchar(255) NOT NULL,
+            `user_email` varchar(255) NOT NULL,
+            `user_comment` longtext NOT NULL,
             `created_at` timestamp NOT NULL,
             PRIMARY KEY (id)
         ) $collate;";

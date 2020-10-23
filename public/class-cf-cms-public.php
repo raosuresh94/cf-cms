@@ -98,6 +98,12 @@ class Cf_Cms_Public {
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/cf-cms-public.js', array( 'jquery' ), $this->version, false );
 
+		wp_localize_script($this->plugin_name,'cf_cms', array(
+			'ajax' => admin_url('admin-ajax.php'),
+			'success' => __('Request sucessfully submitted!', 'cf-cms'),
+			'error' => __('Please fill all the details!', 'cf-cms')
+		));
+
 	}
 
 	/**
@@ -112,6 +118,44 @@ class Cf_Cms_Public {
 		ob_start();
 			require __DIR__.'/templates/template-form.php';
 		return ob_get_clean();
+	}
+
+	public function cms_cf_submit()
+	{
+		if($this->save_form_data($_POST)){
+			wp_send_json(
+				array(
+					'status' => true,
+					'message' => 'We are getting issue to save your data!'
+				)
+			);
+		}
+		wp_send_json(
+			array(
+				'status' => false,
+				'message' => 'Data Saved Succesfully'
+			)
+		);
+	}
+
+	private function save_form_data($data)
+	{
+		global $wpdb;
+		$table = $wpdb->prefix.TABLE_NAME;
+
+		$body = array();
+		$body['user_first_name'] = $data['user_first_name'];
+		$body['user_last_name'] = $data['user_last_name'];
+		$body['user_phone'] = $data['user_phone'];
+		$body['user_email'] = $data['user_email'];
+		$body['user_comment'] = $data['user_comment'];
+
+		$response = $wpdb->insert($table,$body);
+
+		if(is_wp_error($response)){
+			return true;
+		}
+		return false;
 	}
 
 }

@@ -113,7 +113,13 @@ class Cf_Cms_Admin {
 	}
 
 	public function render_menu_page(){
-        echo '<div class="wrap"><h2>Contact Form Submitted Data</h2>';
+		$data = new CmsData();
+		echo '<div class="wrap"><h2>Contact Form Submitted Data</h2>';
+		echo '<form id="contact_form_db" action="" method="get">';
+        echo '<input type="hidden" name="page" value="'.$_REQUEST["page"].'" />';
+        $data->prepare_items();
+        $data->display();
+        echo '</form>';
         echo '</div>';
     }
 

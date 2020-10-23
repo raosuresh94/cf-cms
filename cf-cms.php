@@ -37,6 +37,9 @@ if ( ! defined( 'WPINC' ) ) {
  */
 define( 'CF_CMS_VERSION', '1.0.0' );
 
+define('TABLE_NAME', 'cf_cms');
+
+
 /**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-cf-cms-activator.php
@@ -63,6 +66,8 @@ register_deactivation_hook( __FILE__, 'deactivate_cf_cms' );
  * admin-specific hooks, and public-facing site hooks.
  */
 require plugin_dir_path( __FILE__ ) . 'includes/class-cf-cms.php';
+require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
+require plugin_dir_path( __FILE__ ) . 'admin/class-cf-cms-data.php';
 
 /**
  * Begins execution of the plugin.
