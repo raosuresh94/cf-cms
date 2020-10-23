@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Fired during plugin activation
  *
@@ -31,9 +30,9 @@ class Cf_Cms_Activator {
 	 */
 	public static function activate() {
 		global $wpdb;
-        $table_name = $wpdb->prefix.TABLE_NAME;
-        $collate = $wpdb->get_charset_collate();
-        $sql = "CREATE TABLE {$table_name}(
+		$table_name = $wpdb->prefix . TABLE_NAME;
+		$collate    = $wpdb->get_charset_collate();
+		$sql        = "CREATE TABLE {$table_name}(
             `id` INT(10) NOT NULL AUTO_INCREMENT,
             `user_first_name` varchar(255) NOT NULL,
             `user_last_name` varchar(255) NOT NULL,
@@ -43,8 +42,8 @@ class Cf_Cms_Activator {
             `created_at` timestamp NOT NULL,
             PRIMARY KEY (id)
         ) $collate;";
-        require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-        dbDelta($sql);
+		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
+		dbDelta( $sql );
 	}
 
 }

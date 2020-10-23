@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The admin-specific functionality of the plugin.
  *
@@ -44,13 +43,13 @@ class Cf_Cms_Admin {
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
-	 * @param      string    $plugin_name       The name of this plugin.
-	 * @param      string    $version    The version of this plugin.
+	 * @param      string $plugin_name       The name of this plugin.
+	 * @param      string $version    The version of this plugin.
 	 */
 	public function __construct( $plugin_name, $version ) {
 
 		$this->plugin_name = $plugin_name;
-		$this->version = $version;
+		$this->version     = $version;
 
 	}
 
@@ -100,27 +99,34 @@ class Cf_Cms_Admin {
 
 	}
 
-	public function register_menu(){
+	/**
+	 * Register Menus.
+	 */
+	public function register_menu() {
 		add_menu_page(
-            'Contact Form DB',
-            'Contact Form DB',
-            'manage_options',
-            'contact_form_db',
-            array($this,'render_menu_page'),
-            'dashicons-chart-line',
+			'Contact Form DB',
+			'Contact Form DB',
+			'manage_options',
+			'contact_form_db',
+			array( $this, 'render_menu_page' ),
+			'dashicons-chart-line',
 		);
-		
+
 	}
 
-	public function render_menu_page(){
+	/**
+	 * Render Page For Contact DB Menu.
+	 */
+	public function render_menu_page() {
 		$data = new CmsData();
+		$page = ( ! empty( $_REQUEST['page'] ) ) ? sanitize_text_field( wp_unslash( $_REQUEST['page'] ) ) : '';
 		echo '<div class="wrap"><h2>Contact Form Submitted Data</h2>';
 		echo '<form id="contact_form_db" action="" method="get">';
-        echo '<input type="hidden" name="page" value="'.$_REQUEST["page"].'" />';
-        $data->prepare_items();
-        $data->display();
-        echo '</form>';
-        echo '</div>';
-    }
+		echo '<input type="hidden" name="page" value="' . esc_attr( $page ) . '" />';
+		$data->prepare_items();
+		$data->display();
+		echo '</form>';
+		echo '</div>';
+	}
 
 }

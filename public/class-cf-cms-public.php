@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The public-facing functionality of the plugin.
  *
@@ -44,13 +43,13 @@ class Cf_Cms_Public {
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
-	 * @param      string    $plugin_name       The name of the plugin.
-	 * @param      string    $version    The version of this plugin.
+	 * @param      string $plugin_name       The name of the plugin.
+	 * @param      string $version    The version of this plugin.
 	 */
 	public function __construct( $plugin_name, $version ) {
 
 		$this->plugin_name = $plugin_name;
-		$this->version = $version;
+		$this->version     = $version;
 
 	}
 
@@ -98,61 +97,69 @@ class Cf_Cms_Public {
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/cf-cms-public.js', array( 'jquery' ), $this->version, false );
 
-		wp_localize_script($this->plugin_name,'cf_cms', array(
-			'ajax' => admin_url('admin-ajax.php'),
-			'success' => __('Request sucessfully submitted!', 'cf-cms'),
-			'error' => __('Please fill all the details!', 'cf-cms')
-		));
+		wp_localize_script(
+			$this->plugin_name,
+			'cf_cms',
+			array(
+				'ajax'    => admin_url( 'admin-ajax.php' ),
+				'success' => __( 'Request sucessfully submitted!', 'cf-cms' ),
+				'error'   => __( 'Please fill all the details!', 'cf-cms' ),
+			)
+		);
 
 	}
 
 	/**
 	 * Render Contact Form
-	 * @param array $attr
-	 * @param string $content
-	 * @return object
+	 *
+	 * @param array  $attr Attr.
+	 * @param string $content Conteng.
 	 */
-
-	public function render_contact_form( $attr=array(), $content=null )
-	{
+	public function render_contact_form( $attr = array(), $content = null ) {
 		ob_start();
-			require __DIR__.'/templates/template-form.php';
+			require __DIR__ . '/templates/template-form.php';
 		return ob_get_clean();
 	}
 
-	public function cms_cf_submit()
-	{
-		if($this->save_form_data($_POST)){
+	/**
+	 * AJAX Callback function on form submit
+	 */
+	public function cms_cf_submit() {
+		if ( $this->save_form_data( $_POST ) ) {
 			wp_send_json(
 				array(
-					'status' => true,
-					'message' => 'We are getting issue to save your data!'
+					'status'  => true,
+					'message' => 'We are getting issue to save your data!',
 				)
 			);
 		}
 		wp_send_json(
 			array(
-				'status' => false,
-				'message' => 'Data Saved Succesfully'
+				'status'  => false,
+				'message' => 'Data Saved Succesfully',
 			)
 		);
 	}
 
-	private function save_form_data($data)
-	{
+	/**
+	 * Save The posted data to Database
+	 *
+	 * @param array $data Posted data.
+	 */
+	private function save_form_data( $data ) {
 		global $wpdb;
-		$table = $wpdb->prefix.TABLE_NAME;
+		$table = $wpdb->prefix . TABLE_NAME;
 
-		$body = array();
+		$body                    = array();
 		$body['user_first_name'] = $data['user_first_name'];
-		$body['user_last_name'] = $data['user_last_name'];
-		$body['user_phone'] = $data['user_phone'];
-		$body['user_email'] = $data['user_email'];
-		$body['user_comment'] = $data['user_comment'];
+		$body['user_last_name']  = $data['user_last_name'];
+		$body['user_phone']      = $data['user_phone'];
+		$body['user_email']      = $data['user_email'];
+		$body['user_comment']    = $data['user_comment'];
 
-		$response = $wpdb->insert($table,$body);
+		$response = $wpdb->insert( $table, $body );
 
-		if(is_wp_error($response)){
+		if ( is_wp_error( $response ) ) {
 			return true;
 		}
 		return false;
