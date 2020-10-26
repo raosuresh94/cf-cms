@@ -53,6 +53,7 @@ function form_submit() {
 							if(response.status){
 								response_container.innerHTML = response.message;
 								response_container.classList.add('error_response');
+								el.target.removeChild(loadingBox);
 							}else{
 								response_container.innerHTML = response.message;
 								response_container.classList.add('success_response');
@@ -62,8 +63,9 @@ function form_submit() {
 								document.getElementById('user_phone').value = '';
 								document.getElementById('user_email').value = '';
 								document.getElementById('user_comment').value = '';
+								el.target.removeChild(loadingBox);
 							}
-							el.target.removeChild(loadingBox);
+							
 						}
 					}
 					request.open('POST', cf_cms.ajax, true);

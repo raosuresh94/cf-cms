@@ -35,8 +35,8 @@
 			<input type="phone" valid="true" class="form-field" name="user_phone" id="user_phone">
 		</div>
 		<div class="half-input">
-			<label for="useresc_html_email"><?php esc_html_e( 'Email', 'cf-cms' ); ?></label>
-			<input type="email" valid="true" class="form-field" name="useresc_html_email" id="useresc_html_email">
+			<label for="user_email"><?php esc_html_e( 'Email', 'cf-cms' ); ?></label>
+			<input type="email" valid="true" class="form-field" name="user_email" id="user_email">
 		</div>
 	</div>
 

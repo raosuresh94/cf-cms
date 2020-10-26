@@ -42,7 +42,8 @@ class Cf_Cms_Data extends WP_List_Table {
 		global $wpdb;
 		$table_name = $wpdb->prefix . TABLE_NAME;
 		$this->delete();
-		$results = $wpdb->get_results( $wpdb->prepare( 'SELECT * FROM %s', $table_name ), ARRAY_A );
+		$query   = $wpdb->prepare( "SELECT * FROM `$table_name`" );
+		$results = $wpdb->get_results( $query, ARRAY_A );
 		$data    = array();
 		foreach ( $results as $key => $value ) {
 			$data[] = array(

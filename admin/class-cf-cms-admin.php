@@ -118,7 +118,7 @@ class Cf_Cms_Admin {
 	 * Render Page For Contact DB Menu.
 	 */
 	public function render_menu_page() {
-		$data = new CmsData();
+		$data = new Cf_Cms_Data();
 		$page = ( ! empty( $_REQUEST['page'] ) ) ? sanitize_text_field( wp_unslash( $_REQUEST['page'] ) ) : '';
 		echo '<div class="wrap"><h2>Contact Form Submitted Data</h2>';
 		echo '<form id="contact_form_db" action="" method="get">';

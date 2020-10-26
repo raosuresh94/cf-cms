@@ -46,6 +46,7 @@ define( 'TABLE_NAME', 'cf_cms' );
 function activate_cf_cms() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-cf-cms-activator.php';
 	Cf_Cms_Activator::activate();
+	Cf_Cms_Activator::add_shortcode();
 }
 
 /**

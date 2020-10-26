@@ -149,7 +149,7 @@ class Cf_Cms_Public {
 	private function save_form_data( $data ) {
 		global $wpdb;
 		$table = $wpdb->prefix . TABLE_NAME;
-
+		
 		$body                    = array();
 		$body['user_first_name'] = $data['user_first_name'];
 		$body['user_last_name']  = $data['user_last_name'];

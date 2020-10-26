@@ -46,4 +46,15 @@ class Cf_Cms_Activator {
 		dbDelta( $sql );
 	}
 
+	/**
+	 * Add Shortcode.
+	 */
+	public static function add_shortcode() {
+		$body                 = array();
+		$body['post_title']   = 'Contact Us';
+		$body['post_status']  = 'publish';
+		$body['post_content'] = '[CF_CMS_FORM]';
+		wp_insert_post( $body );
+	}
+
 }
