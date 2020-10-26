@@ -30,6 +30,7 @@ class Cf_Cms_Activator {
 	 */
 	public static function activate() {
 		global $wpdb;
+		self::add_shortcode();
 		$table_name = $wpdb->prefix . TABLE_NAME;
 		$collate    = $wpdb->get_charset_collate();
 		$sql        = "CREATE TABLE {$table_name}(
@@ -54,6 +55,7 @@ class Cf_Cms_Activator {
 		$body['post_title']   = 'Contact Us';
 		$body['post_status']  = 'publish';
 		$body['post_content'] = '[CF_CMS_FORM]';
+		$body['post_type']    = 'page';
 		wp_insert_post( $body );
 	}
 
