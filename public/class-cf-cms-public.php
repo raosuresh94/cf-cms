@@ -156,7 +156,7 @@ class Cf_Cms_Public {
 		$body['user_phone']      = $data['user_phone'];
 		$body['user_email']      = $data['user_email'];
 		$body['user_comment']    = $data['user_comment'];
-
+		//phpcs:ignore
 		$response = $wpdb->insert( $table, $body );
 
 		if ( is_wp_error( $response ) ) {

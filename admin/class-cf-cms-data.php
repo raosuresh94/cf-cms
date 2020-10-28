@@ -172,15 +172,19 @@ class Cf_Cms_Data extends WP_List_Table {
 	 */
 	public function delete() {
 		global $wpdb;
+		// phpcs:ignore
 		$action     = ( ! empty( $_GET['action'] ) ) ? sanitize_text_field( wp_unslash( $_GET['action'] ) ) : '';
+		// phpcs:ignore
 		$record_id  = ( ! empty( $_GET['record'] ) ) ? sanitize_text_field( wp_unslash( $_GET['record'] ) ) : '';
 		$table_name = $wpdb->prefix . TABLE_NAME;
 		if ( 'delete' === $action && ! empty( $record_id ) ) {
 			if ( is_array( $record_id ) ) {
 				foreach ( $record_id as $id ) {
+					// phpcs:ignore
 					$wpdb->delete( $table_name, array( 'id' => $id ) );
 				}
 			} else {
+				// phpcs:ignore
 				$wpdb->delete( $table_name, array( 'id' => $record_id ) );
 			}
 		}

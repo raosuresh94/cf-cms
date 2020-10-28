@@ -109,7 +109,7 @@ class Cf_Cms_Admin {
 			'manage_options',
 			'contact_form_db',
 			array( $this, 'render_menu_page' ),
-			'dashicons-chart-line',
+			'dashicons-chart-line'
 		);
 
 	}
@@ -119,7 +119,8 @@ class Cf_Cms_Admin {
 	 */
 	public function render_menu_page() {
 		$data = new Cf_Cms_Data();
-		$page = ( ! empty( $_REQUEST['page'] ) ) ? sanitize_text_field( wp_unslash( $_REQUEST['page'] ) ) : '';
+		// phpcs:ignore 
+		$page = ( ! empty( $_GET['page'] ) ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : '';
 		echo '<div class="wrap"><h2>Contact Form Submitted Data</h2>';
 		echo '<form id="contact_form_db" action="" method="get">';
 		echo '<input type="hidden" name="page" value="' . esc_attr( $page ) . '" />';

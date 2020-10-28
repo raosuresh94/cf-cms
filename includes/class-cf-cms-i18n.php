@@ -23,7 +23,7 @@
  * @subpackage Cf_Cms/includes
  * @author     Suresh <raosuresh94@gmail.com>
  */
-class Cf_Cms_i18n {
+class Cf_Cms_I18n {
 
 
 	/**

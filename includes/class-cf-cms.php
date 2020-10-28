@@ -86,7 +86,7 @@ class Cf_Cms {
 	 * Include the following files that make up the plugin:
 	 *
 	 * - Cf_Cms_Loader. Orchestrates the hooks of the plugin.
-	 * - Cf_Cms_i18n. Defines internationalization functionality.
+	 * - Cf_Cms_I18n. Defines internationalization functionality.
 	 * - Cf_Cms_Admin. Defines all hooks for the admin area.
 	 * - Cf_Cms_Public. Defines all hooks for the public side of the site.
 	 *
@@ -128,7 +128,7 @@ class Cf_Cms {
 	/**
 	 * Define the locale for this plugin for internationalization.
 	 *
-	 * Uses the Cf_Cms_i18n class in order to set the domain and to register the hook
+	 * Uses the Cf_Cms_I18n class in order to set the domain and to register the hook
 	 * with WordPress.
 	 *
 	 * @since    1.0.0
@@ -136,7 +136,7 @@ class Cf_Cms {
 	 */
 	private function set_locale() {
 
-		$plugin_i18n = new Cf_Cms_i18n();
+		$plugin_i18n = new Cf_Cms_I18n();
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
 
