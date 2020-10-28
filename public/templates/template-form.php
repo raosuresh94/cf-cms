@@ -18,6 +18,7 @@
 
 	<?php do_action( 'cf_cms_before_form_field' ); ?>
 	<input type="hidden" name="action" value="cms_cf_submit">
+	<input type="hidden" name="nonce" value="<?php echo esc_html( wp_create_nonce( 'cms_cf_submit' ) ); ?>">
 	<div class="form-wrapper">
 		<div class="half-input">
 			<label for="user_first_name"><?php esc_html_e( 'First Name', 'cf-cms' ); ?></label>

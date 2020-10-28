@@ -125,6 +125,14 @@ class Cf_Cms_Public {
 	 * AJAX Callback function on form submit
 	 */
 	public function cms_cf_submit() {
+		if ( ! wp_verify_nonce( isset( $_POST['nonce'] ), 'cms_cf_submit' ) ) {
+			wp_send_json(
+				array(
+					'status'  => true,
+					'message' => 'Security',
+				)
+			);
+		}
 		if ( $this->save_form_data( $_POST ) ) {
 			wp_send_json(
 				array(
@@ -148,8 +156,7 @@ class Cf_Cms_Public {
 	 */
 	private function save_form_data( $data ) {
 		global $wpdb;
-		$table = $wpdb->prefix . TABLE_NAME;
-		
+		$table                   = $wpdb->prefix . TABLE_NAME;
 		$body                    = array();
 		$body['user_first_name'] = $data['user_first_name'];
 		$body['user_last_name']  = $data['user_last_name'];
