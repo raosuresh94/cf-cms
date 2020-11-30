@@ -98,7 +98,7 @@ function valid(element) {
 				if(value==""){
 					response = "Please Enter Valid Mobile Number";
 				}else if(value!="" && !phoneCheck.test(value)){
-					response = "Email is wrong. Please Enter Valid Mobile Number";
+					response = "Mobile Number is wrong. Please Enter Valid Mobile Number";
 				}
 			break;
 		
