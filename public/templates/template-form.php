@@ -22,22 +22,22 @@
 	<div class="form-wrapper">
 		<div class="half-input">
 			<label for="user_first_name"><?php esc_html_e( 'First Name', 'cf-cms' ); ?></label>
-			<input type="text" valid="true" class="form-field" name="user_first_name" id="user_first_name">
+			<input type="text" validation-type="name" valid="true" class="form-field" name="user_first_name" id="user_first_name">
 		</div>
 		<div class="half-input">
 			<label for="user_last_name"><?php esc_html_e( 'Last Name', 'cf-cms' ); ?></label>
-			<input type="text" valid="true" class="form-field" name="user_last_name" id="user_last_name">
+			<input type="text" valid="true" validation-type="name" class="form-field" name="user_last_name" id="user_last_name">
 		</div>
 	</div>
 
 	<div class="form-wrapper">
 		<div class="half-input">
 			<label for="user_phone"><?php esc_html_e( 'Mobile', 'cf-cms' ); ?></label>
-			<input type="phone" valid="true" class="form-field" name="user_phone" id="user_phone">
+			<input type="phone" valid="true" validation-type="phone" class="form-field" name="user_phone" id="user_phone">
 		</div>
 		<div class="half-input">
 			<label for="user_email"><?php esc_html_e( 'Email', 'cf-cms' ); ?></label>
-			<input type="email" valid="true" class="form-field" name="user_email" id="user_email">
+			<input type="email" valid="true" validation-type="email" class="form-field" name="user_email" id="user_email">
 		</div>
 	</div>
 
