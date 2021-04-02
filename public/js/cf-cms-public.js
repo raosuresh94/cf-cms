@@ -79,32 +79,40 @@ function form_submit() {
 
 function valid(element) {
 	var validate = element.getAttribute('valid');
-	var type = element.getAttribute('type');
+	var type = element.getAttribute('validation-type');
 	var value = element.value;
-	var emailCheck = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/; 
+	var emailCheck = /^(([^<>()[]\.,;:s@"]+(.[^<>()[]\.,;:s@"]+)*)|(".+"))@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))$/i; 
 	var phoneCheck = /^[0-9]{10}$/;
 	var response = false;
 	if(validate){
 		switch (type) {
 			case 'email':
 				if(value==""){
-					response = "Please Enter Valid Email";
+					response = "Please enter valid email";
 				}else if(value!="" && !emailCheck.test(value)){
-					response = "Email is wrong. Please Enter Valid Email";
+					response = "Email is wrong. Please enter valid email";
+				}
+			break;
+
+			case 'name':
+				if (value == "") {
+					response = "Please enter valid name detail";
+				} else if (value != "" && !isNaN(value)){
+					response = "Please enter valid name detail";
 				}
 			break;
 
 			case 'phone':
 				if(value==""){
-					response = "Please Enter Valid Mobile Number";
+					response = "Please enter valid mobile number";
 				}else if(value!="" && !phoneCheck.test(value)){
-					response = "Email is wrong. Please Enter Valid Mobile Number";
+					response = "Mobile number is wrong. Please enter valid mobile number";
 				}
 			break;
 		
 			default:
 				if(value==""){
-					response = "Please Enter Valid detail";
+					response = "Please enter valid detail";
 				}
 			break;
 		}

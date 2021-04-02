@@ -125,7 +125,7 @@ class Cf_Cms_Public {
 	 * AJAX Callback function on form submit
 	 */
 	public function cms_cf_submit() {
-		if ( ! wp_verify_nonce( isset( $_POST['nonce'] ), 'cms_cf_submit' ) ) {
+		if ( ! wp_verify_nonce($_POST['nonce'], 'cms_cf_submit' ) ) {
 			wp_send_json(
 				array(
 					'status'  => true,

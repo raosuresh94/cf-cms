@@ -14,7 +14,7 @@
  * @wordpress-plugin
  * Plugin Name:       Contact Form CMS
  * Plugin URI:        https://github.com/raosuresh94/cf-cms
- * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
+ * Description:       This plugin is useful for Get contact information from site visitors.
  * Version:           1.0.0
  * Author:            Suresh
  * Author URI:        https://github.com/raosuresh94/
